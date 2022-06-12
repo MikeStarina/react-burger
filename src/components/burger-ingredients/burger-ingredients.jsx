@@ -11,7 +11,7 @@ import styles from './burger-ingredients.module.css';
 export default function BurgerIngredients(props) {
 
     const [current, setCurrent] = useState('buns');
-    const [count, setCount] = useState({})
+    const [count, setCount] = useState([{id: 0 ,counter: 0}])
 
     const bunsScrollRef = useRef(null);
     const saucesScrollRef = useRef(null);
@@ -21,13 +21,62 @@ export default function BurgerIngredients(props) {
     const sauceArr = props.data.filter(object => object['type'] === 'sauce');
     const mainArr = props.data.filter(object => object['type'] === 'main');
 
-
+    
     const clickHandler = (e) => {
-        props.addToCart(e.currentTarget.id);
-        const id = e.currentTarget.id;
+
         
+        let currentItem = count.findIndex(elem => elem.id === e.currentTarget.id);
+        const newCount = [...count];
+
+        if (currentItem = -1) {
+            const obj = {
+                id: e.currentTarget.id,
+                counter: 1
+            }
+            newCount.push(obj); 
+            props.addToCart(e.currentTarget.id);    
+        }
+        
+        
+        
+        setCount(newCount);
+        
+        
+        //console.log(count);
+    
+    
+    };
+
+    const card = (item) => {
+
        
+        let counter;
+        const countEl = count.findIndex(elem => elem.id === item._id); 
+
+        if (countEl != -1) {
+            counter = count[countEl].counter;
+        } else {
+            counter = 0;
+        }
+        
+        return (
+
+
+            <li key={item._id} id={item._id} className={styles.card} onClick={clickHandler}>
+                {counter > 0 && <Counter count={counter} />}
+                <img src={item.image} alt={item.name} />
+                <div className={styles.price_container}>
+                    <p className={`${styles.price} text text_type_digits-default`}>{item.price}</p>
+                    <CurrencyIcon />
+
+                </div>
+                
+                <p className={`${styles.description} text text_type_main-default`}>{item.name}</p>
+            </li>)
     }
+
+
+
 
 
     useEffect(() => {
@@ -54,55 +103,22 @@ export default function BurgerIngredients(props) {
             <div className={styles.menu}>
                 <h2 className='text text_type_main-medium' ref={bunsScrollRef}>Булки</h2>
                 <ul className={styles.list}>
-                    {bunsArr.map((item) => (
-                        <li key={item._id} id={item._id} className={styles.card} onClick={clickHandler}>
-                            {count > 0 && <Counter count={count} />}
-                            <img src={item.image} alt={item.name} />
-                            <div className={styles.price_container}>
-                                <p className='text text_type_digits-medium'>{item.price}</p>
-                                <CurrencyIcon />
-
-                            </div>
-                            
-                            <p className='text text_type_main-default'>{item.name}</p>
-                        </li>
-                    ))}
+                    {bunsArr.map((item) => (card(item)))}
                 </ul>
             </div>
 
             <div className={styles.menu}>
                 <h2 className='text text_type_main-medium' ref={saucesScrollRef}>Соусы</h2>
                 <ul className={styles.list}>
-                    {sauceArr.map((item) => (
-                        <li key={item._id} className={styles.card} id={item._id} onClick={clickHandler}>
-                            <img src={item.image} alt={item.name} />
-                            <div className={styles.price_container}>
-                                <p className='text text_type_digits-medium'>{item.price}</p>
-                                <CurrencyIcon />
-
-                            </div>
-                            
-                            <p className='text text_type_main-default'>{item.name}</p>
-                        </li>
-                    ))}
+                    {sauceArr.map((item) => (card(item)))}
                 </ul>
             </div>
 
             <div className={styles.menu}>
                 <h2 className='text text_type_main-medium' ref={mainsScrollRef}>Начинки</h2>
                 <ul className={styles.list}>
-                    {mainArr.map((item) => (
-                        <li key={item._id} className={styles.card} id={item._id} onClick={clickHandler}>
-                            <img src={item.image} alt={item.name} />
-                            <div className={styles.price_container}>
-                                <p className='text text_type_digits-medium'>{item.price}</p>
-                                <CurrencyIcon />
-
-                            </div>
-                            
-                            <p className='text text_type_main-default'>{item.name}</p>
-                        </li>
-                    ))}
+                    {mainArr.map((item) => (card(item)))}
+                    
                 </ul>
             </div>
         </div>

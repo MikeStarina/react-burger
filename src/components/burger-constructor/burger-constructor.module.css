@@ -34,15 +34,16 @@
     display: flex;
     flex-direction: column;
     
+    
 }
 
 .card {
     width: 100%;
     max-width: 600px;
-    box-sizing: border-box;
+   
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     align-content: center;
     margin: 0 0 16px 0;
@@ -69,4 +70,10 @@
     margin: 0 42px 0 0;
     padding: 0;
 
+}
+
+.total_price {
+    padding: 0;
+    margin: 0;
+    margin-right: 10px;
 }
