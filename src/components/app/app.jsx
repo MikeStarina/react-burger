@@ -91,9 +91,9 @@ function App() {
   return (
     <>
       <AppHeader />
-      <main className='main'>
+      <main className={styles.main}>
         <h1 className='text text_type_main-large'>Соберите бургер</h1>
-        <section className='content'>
+        <section className={styles.content}>
           <BurgerIngredients data={data} addToCart={addToCart} cartData={cart}/>
           <BurgerConstructor cartData={cart} openModal={openModal} total={totalPrice} />
         </section>
