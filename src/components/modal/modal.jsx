@@ -1,7 +1,6 @@
 import React, {useEffect, useState}  from 'react';
 import PropTypes from 'prop-types';
 import styles from './modal.module.css';
-import { CloseIcon, CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { createPortal } from 'react-dom';
 import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
@@ -11,12 +10,19 @@ const popup = document.querySelector('#popup');
 
 export default function Modal(props) {
 
-    //console.log(props.popupType);
+    const escClose = (e) => {
+
+
+        if (e.key === "Escape") {
+       
+          props.closeModal()
+        }
+    }
 
     useEffect(() => {
-        document.addEventListener('keydown', props.escClose);
+        document.addEventListener('keydown', escClose);
         return () => {
-          document.removeEventListener('keydown', props.escClose);
+          document.removeEventListener('keydown', escClose);
         }
     }, [])
 

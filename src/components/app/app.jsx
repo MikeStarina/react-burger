@@ -54,14 +54,7 @@ function App() {
     setIsOpened(false);
   }
 
-  const escClose = (e) => {
-
-
-    if (e.key === "Escape") {
-   
-      closeModal()
-    }
-  }
+  
 
   const addToCart = (id) => {
 
@@ -100,7 +93,7 @@ function App() {
         
       </main>
 
-      {isOpened && <Modal closeModal={closeModal} escClose={escClose} popupType={popup} data={data} ingredient={ingredient} />}
+      {isOpened && <Modal closeModal={closeModal} popupType={popup} data={data} ingredient={ingredient} />}
     </>
   );
 }
