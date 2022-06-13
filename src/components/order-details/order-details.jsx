@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './order-details.module.css';
 import { CheckMarkIcon, CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 
 export default function OrderDetails(props) {
 
@@ -20,3 +21,8 @@ export default function OrderDetails(props) {
         </>
     )
 }
+
+OrderDetails.propTypes = {
+    closeModal: PropTypes.func
+
+};

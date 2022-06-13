@@ -1,4 +1,5 @@
 import React, {useEffect, useState}  from 'react';
+import PropTypes from 'prop-types';
 import styles from './modal.module.css';
 import { CloseIcon, CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { createPortal } from 'react-dom';
@@ -39,3 +40,12 @@ export default function Modal(props) {
 
     );
 }
+
+Modal.propTypes = {
+    data: PropTypes.array,
+    closeModal: PropTypes.func,
+    escClose: PropTypes.func,
+    popupType: PropTypes.string,
+    ingredient: PropTypes.string
+
+};

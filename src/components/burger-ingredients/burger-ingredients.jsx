@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Counter } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -124,3 +125,10 @@ export default function BurgerIngredients(props) {
         </div>
     );
 }
+
+BurgerIngredients.propTypes = {
+    data: PropTypes.array,
+    addToCart: PropTypes.func,
+    cartData: PropTypes.array
+
+};

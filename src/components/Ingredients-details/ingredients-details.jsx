@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './ingredients-details.module.css';
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 
 
 
@@ -42,3 +43,10 @@ export default function IngredientsDetails(props) {
         </>
     )
 }
+
+IngredientsDetails.propTypes = {
+    data: PropTypes.array,
+    ingredient: PropTypes.string,
+    closeModal: PropTypes.func
+
+};

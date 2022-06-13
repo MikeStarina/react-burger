@@ -1,6 +1,8 @@
 import styles from './burger-constructor.module.css';
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Button, DragIcon, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
+
 
 
 export default function BurgerConstructor({cartData, openModal, total}) {
@@ -89,3 +91,11 @@ export default function BurgerConstructor({cartData, openModal, total}) {
 
 
 }
+
+BurgerConstructor.propTypes = {
+    cartData: PropTypes.array,
+    openModal: PropTypes.func,
+    total: PropTypes.number
+
+};
+
