@@ -1,15 +1,16 @@
-import React, {useEffect, useState}  from 'react';
+import React, {Children, useEffect, useState}  from 'react';
 import PropTypes from 'prop-types';
 import styles from './modal.module.css';
 import { createPortal } from 'react-dom';
 import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
-import OrderDetails from '../order-details/order-details.jsx';
-import IngredientsDetails from '../Ingredients-details/ingredients-details.jsx';
+
 
 const popup = document.querySelector('#popup');
 
 export default function Modal(props) {
 
+
+    //console.log(props.children);
     const escClose = (e) => {
 
 
@@ -30,11 +31,9 @@ export default function Modal(props) {
         (
         <>
             
-                <div className={styles.popup}>
+                <div className={styles.popup}>       
                     
-                    
-                    {props.popupType === 'order popup' ? <OrderDetails closeModal={props.closeModal} /> : <IngredientsDetails data={props.data} ingredient={props.ingredient} closeModal={props.closeModal} />}
-                        
+                {props.children}                
                         
                     
                 </div>
@@ -48,10 +47,8 @@ export default function Modal(props) {
 }
 
 Modal.propTypes = {
-    data: PropTypes.array,
+   
     closeModal: PropTypes.func,
-    escClose: PropTypes.func,
-    popupType: PropTypes.string,
-    ingredient: PropTypes.string
-
+   
+    
 };

@@ -8,20 +8,9 @@
     margin: 0;
     padding: 0;
     height: 100vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-	scrollbar-width: thin;
-    scroll-behavior: smooth;
+    
 }
 
-.burger_ingredients::-webkit-scrollbar{
-	width: 8px;
-	background: #2F2F37;
-}
-.burger_ingredients::-webkit-scrollbar-thumb{
-	width: 8px;
-	background: #8585AD;
-}
 
 
 
@@ -34,6 +23,45 @@
 
 
 }
+
+.button_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.button_item {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+.menu_container {
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    overflow-y: scroll;
+    overflow-x: auto;
+	scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
+
+.menu_container::-webkit-scrollbar{
+	width: 8px;
+	background: #2F2F37;
+}
+.menu_container::-webkit-scrollbar-thumb{
+	width: 8px;
+	background: #8585AD;
+}
+
 
 .menu {
     margin: 0;

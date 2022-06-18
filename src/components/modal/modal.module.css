@@ -2,7 +2,7 @@
 
 .popup {
     
-    max-width: 720;
+    width: 720px;
     box-sizing: border-box;
     border: none;
     border-radius: 40px;

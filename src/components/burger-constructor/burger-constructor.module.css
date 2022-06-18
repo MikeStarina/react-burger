@@ -8,20 +8,10 @@
     margin: 0;
     padding: 0;
     height: 100vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-	scrollbar-width: thin;
-    scroll-behavior: smooth;
+   
 }
 
-.burger_constructor::-webkit-scrollbar{
-	width: 8px;
-	background: #2F2F37;
-}
-.burger_constructor::-webkit-scrollbar-thumb{
-	width: 8px;
-	background: #8585AD;
-}
+
 
 .list {
     
@@ -35,6 +25,36 @@
     flex-direction: column;
     
     
+}
+
+.bun_item {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    padding: 0 20px 0 0;
+    margin: 0 0 16px 0;
+}
+
+.scrollBlock {
+    overflow-y: scroll;
+    overflow-x: hidden;
+	scrollbar-width: thin;
+    scroll-behavior: smooth;
+    height: 100vh;
+}
+
+.scrollBlock::-webkit-scrollbar{
+	width: 8px;
+	background: #2F2F37;
+}
+.scrollBlock::-webkit-scrollbar-thumb{
+	width: 8px;
+	background: #8585AD;
 }
 
 .card {

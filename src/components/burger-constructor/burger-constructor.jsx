@@ -5,97 +5,74 @@ import PropTypes from 'prop-types';
 
 
 
-export default function BurgerConstructor({cartData, openModal, total}) {
+export default function BurgerConstructor({data, openModal, bun}) {
 
     
-    //console.log(cartData);
-
-    const card = (cartData) => {
-
-        const bun = cartData.findIndex(item => item.type === 'bun');
-
-        if (bun != -1) {
-            
-            const otherIngredients = cartData.findIndex(item => item.type != 'bun');
-            const noBun = cartData.filter(item => item.type != 'bun');
-
-            return (
-                <>
-                    <li key={bun} className={styles.card} onClick={openModal} id={cartData[bun]._id}>
-                                
-                        <ConstructorElement type={'top'} text={cartData[bun].name + ' (верх)'} thumbnail={cartData[bun].image} price={cartData[bun].price} isLocked={otherIngredients != -1} />
-                    </li>
-                    {noBun.map((elem, index) => {
-
-                
-                    
-                        return (
+    
+    console.log(bun);    
         
-                        
-                                <li key={index} className={styles.card} onClick={openModal} id={elem._id}>
-                                    <DragIcon />
-                                    <ConstructorElement text={elem.name} thumbnail={elem.image} price={elem.price} />
-                                </li>
-                            
-                        )
-                
-                    })}
+            
+    const otherIngredients = data.filter(item => item.type != 'bun');
+    
 
-                    <li key={cartData[bun]._id + String(bun)} className={styles.card} onClick={openModal} id={cartData[bun]._id}>
-                                
-                        <ConstructorElement type={'bottom'} text={cartData[bun].name + ' (низ)'} thumbnail={cartData[bun].image} price={cartData[bun].price} isLocked={otherIngredients != -1} />
-                    </li>
-                </>
-            )
-        } else {
-
-            return (
-                <>
-                    {cartData.map((elem, index) => {
-                        return (
-                        
-                            
-                            <li key={index} className={styles.card} onClick={openModal} id={elem._id}>
-                                <DragIcon />
-                                <ConstructorElement text={elem.name} thumbnail={elem.image} price={elem.price} />
-                            </li>
-                        
-                        )
-                    })}
-                </>
-            )
-           
-        }
-    }
-
-    const cardRender = card(cartData);
+   
 
  
    
-
+    
     return (
         <div className={styles.burger_constructor}>
-            <ul className={styles.list}>
-            {cardRender}
+
+
+                            <div className={styles.bun_item}>
+                                
+                                <ConstructorElement type={'top'} text={bun.name + ' (верх)'} thumbnail={bun.image} price={bun.price} isLocked={true} />
+                            </div>
+                            <div className={styles.scrollBlock}>
+                                <ul className={styles.list}>
+                                    {otherIngredients.map((elem, index) => {
             
-            </ul>
+                                        
+                                    
+                                        return (
+                        
+                                        
+                                                <li key={index} className={styles.card} id={elem._id}>
+                                                    <DragIcon />
+                                                    <ConstructorElement text={elem.name} thumbnail={elem.image} price={elem.price} />
+                                                </li>
+                                            
+                                        )
+                                
+                                    })}
+                                </ul>
+                            </div>
+        
+                            <div className={styles.bun_item}>
+                                        
+                                <ConstructorElement type={'bottom'} text={bun.name + ' (низ)'} thumbnail={bun.image} price={bun.price} isLocked={true} />
+                            </div>
+            
+            
+            
+            
             <div className={styles.checkout}>
                 <div className={styles.price_box}>
-                    <p className={`${styles.total_price} text text_type_digits-medium`}>{total}</p>
+                    <p className={`${styles.total_price} text text_type_digits-medium`}>333</p>
                     <CurrencyIcon />
                 </div>
                 <Button type="primary" size="large" onClick={openModal}>Оформить заказ</Button>
             </div>
         </div>
-    );
+    ); 
 
 
 }
 
 BurgerConstructor.propTypes = {
-    cartData: PropTypes.array,
+    data: PropTypes.array,
     openModal: PropTypes.func,
-    total: PropTypes.number
+    bun: PropTypes.object
 
 };
 
