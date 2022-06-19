@@ -38,8 +38,8 @@
 
 .close_box {
     position: absolute;
-    top: 60px;
+    top: 48px;
     right: 40px;
     cursor: pointer;
+    z-index: 4;
 }
-
