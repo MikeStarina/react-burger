@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import styles from "./order-details.module.css";
 import {
   CheckMarkIcon,
@@ -7,11 +8,15 @@ import {
 import PropTypes from "prop-types";
 
 export default function OrderDetails(props) {
+
+  const { order } = useSelector(store => store.cart);
+
+  console.log(order);
   return (
     <>
       <div className={styles.popup_container}>
         
-        <h2 className="text text_type_digits-large">034536</h2>
+        <h2 className="text text_type_digits-large">{order.order.number}</h2>
         <p className={`${styles.order_id_text} text text_type_main-default`}>
           идентификатор заказа
         </p>
