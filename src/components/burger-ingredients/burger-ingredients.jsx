@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -17,11 +17,15 @@ export default function BurgerIngredients(props) {
   const mainsScrollRef = useRef(null);
   const menuRef = useRef(null);
 
-  const bunsArr = props.data.filter((object) => object["type"] === "bun");
-  const sauceArr = props.data.filter((object) => object["type"] === "sauce");
-  const mainArr = props.data.filter((object) => object["type"] === "main");
+  const bunsArr = useMemo(() => props.data.filter((object) => object["type"] === "bun"), [props.data]);
+  const sauceArr = useMemo(() => props.data.filter((object) => object["type"] === "sauce"), [props.data]);
+  const mainArr = useMemo(() => props.data.filter((object) => object["type"] === "main"), [props.data]);
 
+
+  
   const onScroll = () => {
+
+  
     //область видимости
     const targetPositionTop = menuRef.current.getBoundingClientRect().y;
     const targetPositionBottom = window.innerHeight;
@@ -52,26 +56,35 @@ export default function BurgerIngredients(props) {
       }
     });
 
-    //Проверяем сколько осталось заголовков в зоне видимости, фильтруем самый верхний и активируем его
 
-    if (currentView.length > 1) {
-      const filteredmenu = currentView.reduce(function (itemOne, itemTwo) {
-        return itemOne.position < itemTwo.position
-          ? itemOne.name
-          : itemTwo.name;
-      });
+   //Проверяем сколько осталось заголовков в зоне видимости, фильтруем самый верхний и активируем его
+ 
+    const filteredmenu = currentView.length > 1
+    ? currentView.reduce(function (itemOne, itemTwo) {
+      return itemOne.position < itemTwo.position
+        ? itemOne.name
+        : itemTwo.name;
+    })
+    : currentView.length === 1
+    ?  currentView[0].name
+    : undefined;
 
-      dispatch({
-        type: CHANGE_ACTIVE_MENU,
-        menu: filteredmenu,
-      });
-    } else if (currentView.length === 1) {
-      dispatch({
-        type: CHANGE_ACTIVE_MENU,
-        menu: currentView[0].name,
-      });
-    }
+    //проверяем что в зоне видимости есть заголовок и он не равен текущему значению
+  
+    if (filteredmenu && filteredmenu !== activeMenu) {
+      
+
+      
+        dispatch({
+          type: CHANGE_ACTIVE_MENU,
+          menu: filteredmenu,
+        });
+      
+    } 
+  
   };
+
+
 
   //клики меню
 

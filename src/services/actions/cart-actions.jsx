@@ -1,19 +1,25 @@
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const MAKE_ORDER = "MAKE_ORDER";
-export const MAKE_ORDER_FAILED = "MAKE_ORDER_FAILED";
-export const MAKE_ORDER_SUCCESS = "MAKE_ORDER_SUCCESS";
+export const MAKE_ORDER_REQUEST = "MAKE_ORDER_REQUEST";
+export const MAKE_ORDER_REQUEST_FAILED = "MAKE_ORDER_REQUEST_FAILED";
+export const MAKE_ORDER_REQUEST_SUCCESS = "MAKE_ORDER_REQUEST_SUCCESS";
 export const DROP_CHANGE_ORDER = "DROP_CHANGE_ORDER";
 
 export function makeOrder(data) {
-  const order = {
-    ingredients: data.map((item) => {
-      return item._id;
-    }),
-  };
+
+  
 
   return function (dispatch) {
-    dispatch({ type: MAKE_ORDER });
+
+    dispatch({ type: MAKE_ORDER_REQUEST });
+
+    
+
+    const order = {
+      ingredients: data.map((item) => {
+        return item._id;
+      }),
+    };
 
     fetch("https://norma.nomoreparties.space/api/orders", {
       method: "POST",
@@ -24,12 +30,12 @@ export function makeOrder(data) {
         if (res.ok) {
           return res.json();
         }
-        dispatch({ type: MAKE_ORDER_FAILED });
+        dispatch({ type: MAKE_ORDER_REQUEST_FAILED });
         return Promise.reject(`Ошибка ${res.status}`);
       })
       .then((res) => {
         dispatch({
-          type: MAKE_ORDER_SUCCESS,
+          type: MAKE_ORDER_REQUEST_SUCCESS,
           data: res,
         });
       });

@@ -15,7 +15,7 @@ import {
   INCREASE_COUNTER,
   DECREASE_COUNTER,
 } from "../../services/actions/data-actions.jsx";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import CartItem from "./cart-item.jsx";
 
 
@@ -30,12 +30,14 @@ export default function BurgerConstructor({ openModal }) {
   const deleteRef = useRef(null);
 
   const { items } = useSelector((store) => store.cart);
+  
 
   //стоимость заказа
 
   const totalPrice = items.reduce(function (acc, item) {
     return item.type === "bun" ? acc + item.price * 2 : acc + item.price;
   }, 0);
+ 
 
   //удаление булок
 
@@ -65,6 +67,7 @@ export default function BurgerConstructor({ openModal }) {
       items.findIndex((elem) => elem.type === "bun") !== -1
     ) {
       const currentBun = items.filter((elem) => elem.type === "bun");
+      console.log(currentBun);
       dispatch({
         type: DECREASE_COUNTER,
         data: currentBun[0]._id,
@@ -92,7 +95,7 @@ export default function BurgerConstructor({ openModal }) {
         {items.map((item) => {
           return item.type === "bun" ? (
             <li
-              key={item._id}
+              key={Math.random()}
               className={styles.card}
               id={item._id}
               ref={deleteRef}
@@ -115,7 +118,7 @@ export default function BurgerConstructor({ openModal }) {
         <ul className={styles.list}>
           {items.map((elem, index) => {
             return elem.type != "bun" ? (
-              <CartItem key={elem._id} elem={elem} index={index} />
+              <CartItem key={Math.random()} elem={elem} index={index} />
             ) : (
               ""
             );
@@ -126,7 +129,7 @@ export default function BurgerConstructor({ openModal }) {
       <div className={styles.bun_item}>
         {items.map((item) => {
           return item.type === "bun" ? (
-            <li key={item._id + 1} className={styles.card}>
+            <li key={Math.random()} className={styles.card}>
               <ConstructorElement
                 type={"bottom"}
                 text={item.name + " (низ)"}

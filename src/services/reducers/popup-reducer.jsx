@@ -1,4 +1,4 @@
-import { ORDER_POPUP_ISOPENED, INGREDIENT_POPUP_ISOPENED, ISCLOSED } from "../actions/popup-actions.jsx";
+import { ORDER_POPUP_ISOPENED, INGREDIENT_POPUP_ISOPENED, CLOSE_MODAL } from "../actions/popup-actions.jsx";
 
 
 
@@ -30,7 +30,7 @@ export const popupReducer = (state = initialState, action) => {
                 ingredient: action.id,
             }
         }
-        case ISCLOSED: {
+        case CLOSE_MODAL: {
             return {
                 ...state,
                 popup: '',

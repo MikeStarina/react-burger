@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./order-details.module.css";
 import {
   CheckMarkIcon,
@@ -7,15 +7,13 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-export default function OrderDetails(props) {
+export default function OrderDetails() {
+  const { order } = useSelector((store) => store.cart);
 
-  const { order } = useSelector(store => store.cart);
-
-  console.log(order);
+  //console.log(order);
   return (
     <>
       <div className={styles.popup_container}>
-        
         <h2 className="text text_type_digits-large">{order.order.number}</h2>
         <p className={`${styles.order_id_text} text text_type_main-default`}>
           идентификатор заказа

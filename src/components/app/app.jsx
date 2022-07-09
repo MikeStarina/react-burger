@@ -14,7 +14,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 import {
-  ISCLOSED,
+  CLOSE_MODAL,
   ORDER_POPUP_ISOPENED,
   INGREDIENT_POPUP_ISOPENED,
 } from "../../services/actions/popup-actions";
@@ -26,7 +26,7 @@ function App() {
   const { data, dataRequestSuccess } = useSelector((store) => store.mainData);
   const { popup, isOpened, ingredient } = useSelector((store) => store.popup);
   const { items, dataSendSuccess } = useSelector((store) => store.cart);
-
+  
   React.useEffect(() => {
     dispatch(getData());
   }, []);
@@ -36,6 +36,8 @@ function App() {
       dispatch({
         type: ORDER_POPUP_ISOPENED,
       });
+    
+
       dispatch(makeOrder(items));
     } else {
       dispatch({
@@ -46,7 +48,7 @@ function App() {
   };
 
   const closeModal = () => {
-    dispatch({ type: ISCLOSED });
+    dispatch({ type: CLOSE_MODAL });
   };
 
   return (
