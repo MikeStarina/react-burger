@@ -1,0 +1,99 @@
+.burger_constructor {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+   
+}
+
+
+
+.list {
+    
+    box-sizing: border-box;
+    max-width: 600px;
+    width: 100%;
+    margin: 0;
+    padding: 0 16px 0 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.bun_item {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    padding: 0 20px 0 0;
+    margin: 0 0 16px 0;
+}
+
+.scrollBlock {
+    overflow-y: scroll;
+    overflow-x: hidden;
+	scrollbar-width: thin;
+    scroll-behavior: smooth;
+    height: 100vh;
+}
+
+.scrollBlock::-webkit-scrollbar{
+	width: 8px;
+	background: #2F2F37;
+}
+.scrollBlock::-webkit-scrollbar-thumb{
+	width: 8px;
+	background: #8585AD;
+}
+
+.card {
+    width: 100%;
+    max-width: 600px;
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    margin: 0 0 16px 0;
+}
+
+.checkout {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    margin: 40px 0 0 0;
+    padding: 0 16px 0 0;
+}
+
+.price_box {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    margin: 0 42px 0 0;
+    padding: 0;
+
+}
+
+.total_price {
+    padding: 0;
+    margin: 0;
+    margin-right: 10px;
+}

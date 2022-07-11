@@ -1,0 +1,48 @@
+.popup_container {
+    box-sizing: border-box;
+    position: relative;
+    margin: 0;
+    padding: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.close_box {
+    position: absolute;
+    top: 48px;
+    right: 40px;
+    cursor: pointer;
+}
+
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    margin: 16px 0 0 0;
+    padding: 0;
+}
+
+.title {
+    align-self: flex-start;
+}
+
+.data_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    margin-right: 20px;
+}
+
+.data_box:last-of-type {
+    margin-right: 0;
+}
