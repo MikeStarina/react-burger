@@ -1,14 +1,12 @@
 import React from "react";
 import styles from "./ingredients-details.module.css";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
 export default function IngredientsDetails(props) {
-  //console.log(props.ingredient);
+
 
   const index = props.data.findIndex((item) => item._id === props.ingredient);
-  //const ingredient = props.data[index];
-  //console.log(props.data[index]);
+
 
   return (
     <>
