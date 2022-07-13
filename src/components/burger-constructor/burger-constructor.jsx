@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from "./burger-constructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import {
@@ -17,6 +18,7 @@ import {
 } from "../../services/actions/data-actions.jsx";
 import { useRef, useMemo } from "react";
 import CartItem from "./cart-item.jsx";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -57,6 +59,11 @@ export default function BurgerConstructor({ openModal }) {
   //добавление в корзину
 
   const addToCart = (item) => {
+
+    item.key = uuidv4();
+    console.log(item.key);
+
+
     dispatch({
       type: INCREASE_COUNTER,
       data: item._id,

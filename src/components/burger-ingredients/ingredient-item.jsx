@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDrag } from "react-dnd";
 
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
