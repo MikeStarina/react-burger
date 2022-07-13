@@ -41,7 +41,7 @@ export const cartReducer = (state = initialState, action) => {
       ) {
         newDataItems.push(action.data);
       }
-      
+      console.log(newDataItems);
       return {
         ...state,
         items: newDataItems,
@@ -79,7 +79,6 @@ export const cartReducer = (state = initialState, action) => {
         dataSendFailed: false,
         dataSendSuccess: true,
         order: action.data,
-        
       };
     }
     case DROP_CHANGE_ORDER: {

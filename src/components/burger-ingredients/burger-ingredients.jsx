@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMemo, useRef } from "react";
 import PropTypes from "prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";

@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from "./burger-constructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import {
@@ -17,6 +18,7 @@ import {
 } from "../../services/actions/data-actions.jsx";
 import { useRef, useMemo } from "react";
 import CartItem from "./cart-item.jsx";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -30,12 +32,13 @@ export default function BurgerConstructor({ openModal }) {
   const deleteRef = useRef(null);
 
   const { items } = useSelector((store) => store.cart);
+  //console.log(items);
   
 
   //стоимость заказа
 
   const totalPrice = items.reduce(function (acc, item) {
-    return item.type === "bun" ? acc + item.price * 2 : acc + item.price;
+    return acc + item.price;
   }, 0);
  
 
@@ -57,6 +60,10 @@ export default function BurgerConstructor({ openModal }) {
   //добавление в корзину
 
   const addToCart = (item) => {
+
+    item.key = uuidv4();
+    
+
     dispatch({
       type: INCREASE_COUNTER,
       data: item._id,
@@ -67,7 +74,7 @@ export default function BurgerConstructor({ openModal }) {
       items.findIndex((elem) => elem.type === "bun") !== -1
     ) {
       const currentBun = items.filter((elem) => elem.type === "bun");
-      console.log(currentBun);
+      
       dispatch({
         type: DECREASE_COUNTER,
         data: currentBun[0]._id,
@@ -93,9 +100,9 @@ export default function BurgerConstructor({ openModal }) {
     <div className={styles.burger_constructor} ref={dropTarget}>
       <div className={styles.bun_item}>
         {items.map((item) => {
-          return item.type === "bun" ? (
-            <li
-              key={Math.random()}
+          return item.type === 'bun' ? (
+            <div
+              key={item.key}
               className={styles.card}
               id={item._id}
               ref={deleteRef}
@@ -108,7 +115,7 @@ export default function BurgerConstructor({ openModal }) {
                 isLocked={items.length > 1 ? true : false}
                 handleClose={items.length > 1 ? "" : handleClose}
               />
-            </li>
+            </div>
           ) : (
             ""
           );
@@ -118,7 +125,7 @@ export default function BurgerConstructor({ openModal }) {
         <ul className={styles.list}>
           {items.map((elem, index) => {
             return elem.type != "bun" ? (
-              <CartItem key={Math.random()} elem={elem} index={index} />
+              <CartItem key={elem.key} elem={elem} index={index} />
             ) : (
               ""
             );
@@ -128,8 +135,8 @@ export default function BurgerConstructor({ openModal }) {
 
       <div className={styles.bun_item}>
         {items.map((item) => {
-          return item.type === "bun" ? (
-            <li key={Math.random()} className={styles.card}>
+          return item.type === 'bun' ? (
+            <div key={item.key} className={styles.card}>
               <ConstructorElement
                 type={"bottom"}
                 text={item.name + " (низ)"}
@@ -138,7 +145,7 @@ export default function BurgerConstructor({ openModal }) {
                 isLocked={items.length > 1 ? true : false}
                 handleClose={items.length > 1 ? "" : handleClose}
               />
-            </li>
+            </div>
           ) : (
             ""
           );

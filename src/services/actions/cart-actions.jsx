@@ -13,7 +13,6 @@ export function makeOrder(data) {
 
     dispatch({ type: MAKE_ORDER_REQUEST });
 
-    
 
     const order = {
       ingredients: data.map((item) => {

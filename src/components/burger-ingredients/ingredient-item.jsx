@@ -1,5 +1,5 @@
 import { useDrag } from "react-dnd";
-
+import React from 'react';
 import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
